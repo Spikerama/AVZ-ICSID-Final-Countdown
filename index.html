@@ -1,1 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICSID Arbitration Countdown</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            background: url('your-image-url.jpg') no-repeat center center/cover;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+            text-align: center; /* Center everything */
+        }
+
+        .header-text {
+            font-size: 1.2em;
+            font-weight: 600;
+            text-align: left;
+            width: 600px;
+            line-height: 1.4;
+            margin-bottom: 20px;
+            text-transform: none;
+            position: absolute;
+            top: 15%;
+            left: 50%;
+            transform: translateX(-50%); /* Centers it */
+        }
+
+        .countdown-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center; /* Ensures perfect centering */
+            align-items: center;
+            width: 100%;
+        }
+
+        .counter {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 0; /* Sharp edges */
+            text-align: center;
+            width: 140px; /* Perfect square */
+            height: 140px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .num {
+            font-size: 4em;
+            font-weight: 700; /* Bold */
+        }
+
+        .text {
+            font-size: 0.75em;
+            margin-top: 3px; /* Adjust for label spacing */
+            opacity: 0.7;
+            font-weight: 600; /* Semi Bold */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-text">
+        Remaining days until the ICSID arbitration tribunal<br> 
+        of AVZ vs DRC's Cominiere, Zijin Mining & Dathomir begins.
+    </div>
+
+    <div class="countdown-container">
+        <div class="counter">
+            <span class="num days">00</span>
+            <div class="text">DAYS</div>
+        </div>
+        <div class="counter">
+            <span class="num hours">00</span>
+            <div class="text">HOURS</div>
+        </div>
+        <div class="counter">
+            <span class="num minutes">00</span>
+            <div class="text">MINUTES</div>
+        </div>
+        <div class="counter">
+            <span class="num seconds">00</span>
+            <div class="text">SECONDS</div>
+        </div>
+    </div>
+
+    <script>
+        const countdownDate = new Date("2025-06-02T00:00:00").getTime();
+        const daysElem = document.querySelector(".days");
+        const hoursElem = document.querySelector(".hours");
+        const minutesElem = document.querySelector(".minutes");
+        const secondsElem = document.querySelector(".seconds");
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            daysElem.textContent = days < 10 ? `0${days}` : days;
+            hoursElem.textContent = hours < 10 ? `0${hours}` : hours;
+            minutesElem.textContent = minutes < 10 ? `0${minutes}` : minutes;
+            secondsElem.textContent = seconds < 10 ? `0${seconds}` : seconds;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+
+</body>
+</html>
 
