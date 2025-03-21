@@ -13,7 +13,7 @@
 }
 
 body {
-    background: url('https://www.nasa.gov/wp-content/uploads/2023/03/127a0959.jpeg') no-repeat center center/cover;
+    background: url('https://www.pixelstalk.net/wp-conte...rth-at-night-view-from-space-4k-wallpaper.jpg') no-repeat center center/cover;
     color: #ffffff;
     display: flex;
     flex-direction: column;
@@ -23,7 +23,6 @@ body {
     padding: 20px;
 }
 
-/* ✅ Headline */
 .header-text {
     font-size: 1.8em;
     font-weight: 600;
@@ -31,23 +30,13 @@ body {
     width: 600px;
     line-height: 1.4;
     margin-bottom: 20px;
+    text-transform: none;
     position: absolute;
-    top: 12%;  /* Adjust the height */
+    top: 15%;
     left: 50%;
     transform: translateX(-50%);
 }
 
-/* Desktop Headline (default) */
-.desktop-headline {
-    display: block;
-}
-
-/* Mobile Headline (hidden by default) */
-.mobile-headline {
-    display: none;
-}
-
-/* ✅ Countdown Timer */
 .countdown-container {
     display: flex;
     gap: 20px;
@@ -55,11 +44,8 @@ body {
     align-items: center;
     width: 100%;
     margin-bottom: 30px;
-    position: absolute;
-    top: 40%; /* Adjust the position */
 }
 
-/* ✅ Countdown Boxes */
 .counter {
     background: rgba(255, 255, 255, 0.1);
     padding: 40px;
@@ -84,16 +70,15 @@ body {
     font-weight: 600;
 }
 
-/* ✅ Context Text */
+/* Context text container */
 .context-text {
     font-size: 1em;
     text-align: left;
     width: 600px;
     position: absolute;
-    top: 55%; /* Move it lower */
+    top: calc(50% + 130px);
     left: 50%;
     transform: translateX(-50%);
-    line-height: 1.5; /* Adjust text height */
 }
 
 /* Hide all text sets initially */
@@ -106,41 +91,29 @@ body {
 /* ✅ Mobile Optimization */
 @media (max-width: 768px) {
     .header-text {
-        font-size: 1.4em;  /* Adjust the mobile size */
+        font-size: 1.2em; /* Smaller font size for mobile */
         width: 90%;
-        left: 50%;
-        transform: translateX(-50%);
-        text-align: left;
-        top: 8%; /* Adjust height */
+        left: 5%;
+        transform: none;
     }
 
-    /* Hide Desktop Headline & Show Mobile Version */
-    .desktop-headline {
-        display: none;
-    }
-    .mobile-headline {
-        display: block;
-    }
-
-    /* Make countdown responsive */
     .countdown-container {
         display: grid;
         grid-template-columns: 1fr 1fr; /* Two columns */
         gap: 10px;
         width: 90%;
         max-width: 400px;
-        top: 30%; /* Move it up */
     }
 
     .counter {
         width: 100%;
         height: auto;
-        aspect-ratio: 1 / 1; /* Keep them square */
+        aspect-ratio: 1 / 1; /* Ensures the boxes remain square */
         padding: 20px;
     }
 
     .num {
-        font-size: 3em; /* Bigger numbers */
+        font-size: 3em; /* Larger numbers for mobile */
     }
 
     .text {
@@ -150,9 +123,8 @@ body {
     .context-text {
         font-size: 0.9em;
         width: 90%;
-        left: 50%;
-        transform: translateX(-50%);
-        top: 48%; /* Move lower */
+        left: 5%;
+        transform: none;
     }
 }
 </style>
@@ -160,14 +132,8 @@ body {
 <body>
 
 <div class="header-text">
-    <span class="desktop-headline">
-        ICSID arbitration tribunal of AVZ vs<br>
-        The Democratic Republic of the Congo.
-    </span>
-    <span class="mobile-headline">
-        ICSID arbitration tribunal of AVZ<br> 
-        vs The Democratic Republic of the Congo.
-    </span>
+ICSID arbitration tribunal of AVZ vs<br>
+The Democratic Republic of the Congo.
 </div>
 
 <div class="countdown-container">
@@ -189,15 +155,36 @@ body {
     </div>
 </div>
 
+<!-- Animated Text Sections -->
 <div class="context-text">
     <div class="text-set set-1">
         <p class="reveal-text">The ICSID tribunal is set to rule on AVZ’s 75% ownership claim.</p>
         <p class="reveal-text">This decision will determine control of the world's largest lithium deposit.</p>
         <p class="reveal-text">AVZ seeks to restore its rightful stake in the Manono Lithium Project.</p>
     </div>
+
+    <div class="text-set set-2">
+        <p class="reveal-text">On March 15, 2025 at the ICC in Paris, AVZ Minerals Limited won a</p>
+        <p class="reveal-text">legal victory against La Congolaise d'Exploitation Minière (Cominière).</p>
+        <p class="reveal-text">The partial penalty to be enforced amounts to €39.125 million plus interest.</p>
+    </div>
+
+    <div class="text-set set-3">
+        <p class="reveal-text">The ICSID tribunal is set to rule on AVZ’s remaining 75% ownership claim.</p>
+        <p class="reveal-text">This decision could reshape control over one of the world's largest lithium deposits.</p>
+        <p class="reveal-text">AVZ seeks to restore its rightful stake in the Manono Lithium Project.</p>
+    </div>
+
+    <div class="text-set set-4">
+        <p class="reveal-text">Global investors are closely watching as the ruling nears.</p>
+        <p class="reveal-text">The final outcome will have major implications for the lithium industry.</p>
+        <p class="reveal-text">Legal clarity could determine future investment in the DRC.</p>
+    </div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script>
+// Countdown logic
 const countdownDate = new Date("2025-06-02T00:00:00").getTime();
 const daysElem = document.querySelector(".days");
 const hoursElem = document.querySelector(".hours");
@@ -221,6 +208,25 @@ function updateCountdown() {
 
 setInterval(updateCountdown, 1000);
 updateCountdown();
+
+// GSAP Timeline for line-by-line animation in sets
+let textSets = document.querySelectorAll(".text-set");
+let timeline = gsap.timeline({ repeat: -1 });
+
+textSets.forEach((set, index) => {
+    let lines = set.querySelectorAll(".reveal-text");
+
+    timeline.to(set, { opacity: 1, duration: 0.5 }); // Fade in entire set
+
+    lines.forEach((line, i) => {
+        timeline.fromTo(line,
+            { opacity: 0, y: 10 },
+            { opacity: 1, y: 0, duration: 1.5, ease: "power2.out", delay: i * 1.5 }
+        );
+    });
+
+    timeline.to(set, { opacity: 0, duration: 1, delay: 2 }); // Hold for 2s then fade out
+});
 </script>
 
 </body>
