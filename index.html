@@ -1,143 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ICSID Arbitration Countdown</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Poppins", sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ICSID Arbitration Countdown</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
 
-        body {
-            background: url('https://www.nasa.gov/wp-content/uploads/2023/03/127a0959.jpeg') no-repeat center center/cover;
-            color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            padding: 20px;
-        }
+body {
+    background: url('https://www.pixelstalk.net/wp-conte...rth-at-night-view-from-space-4k-wallpaper.jpg') no-repeat center center/cover;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+}
 
-        /* Header */
-        .header-text {
-            font-size: 1.8em;
-            font-weight: 600;
-            text-align: left;
-            width: 600px;
-            line-height: 1.4;
-            margin-bottom: 20px;
-            text-transform: none;
-            position: absolute;
-            top: 15%;
-            left: 50%;
-            transform: translateX(-50%);
-        }
+/* ✅ Headline */
+.header-text {
+    font-size: 1.8em;
+    font-weight: 600;
+    text-align: left;
+    width: 600px;
+    line-height: 1.4;
+    margin-bottom: 20px;
+    position: absolute;
+    top: 12%;  /* Adjust the height */
+    left: 50%;
+    transform: translateX(-50%);
+}
 
-        /* Countdown */
-        .countdown-container {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            margin-bottom: 30px;
-        }
+/* Desktop Headline (default) */
+.desktop-headline {
+    display: block;
+}
 
-        .counter {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 40px;
-            text-align: center;
-            width: 140px;
-            height: 140px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
+/* Mobile Headline (hidden by default) */
+.mobile-headline {
+    display: none;
+}
 
-        .num {
-            font-size: 4em;
-            font-weight: 700;
-        }
+/* ✅ Countdown Timer */
+.countdown-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 30px;
+    position: absolute;
+    top: 40%; /* Adjust the position */
+}
 
-        .text {
-            font-size: 0.75em;
-            transform: translateY(-8px);
-            opacity: 0.7;
-            font-weight: 600;
-        }
+/* ✅ Countdown Boxes */
+.counter {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    text-align: center;
+    width: 140px;
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
-        /* Context text container */
-        .context-text {
-            font-size: 1em;
-            text-align: left;
-            width: 600px;
-            position: absolute;
-            top: calc(50% + 130px);
-            left: 50%;
-            transform: translateX(-50%);
-        }
+.num {
+    font-size: 4em;
+    font-weight: 700;
+}
 
-        /* Hide all text sets initially */
-        .text-set {
-            position: absolute;
-            width: 100%;
-            opacity: 0;
-        }
+.text {
+    font-size: 0.75em;
+    transform: translateY(-8px);
+    opacity: 0.7;
+    font-weight: 600;
+}
 
-        /* Mobile Adjustments */
-        @media (max-width: 768px) {
-            .countdown-container {
-                display: grid; /* Change to grid layout for mobile */
-                grid-template-columns: 1fr 1fr; /* Two columns */
-                gap: 10px; /* Adjust gap */
-                width: 90%; /* Adjust width for mobile */
-                max-width: 400px; /* Limit width */
-                position: static; /* Remove absolute positioning */
-                margin-top: 20px; /* Add some space above */
-            }
+/* ✅ Context Text */
+.context-text {
+    font-size: 1em;
+    text-align: left;
+    width: 600px;
+    position: absolute;
+    top: 55%; /* Move it lower */
+    left: 50%;
+    transform: translateX(-50%);
+    line-height: 1.5; /* Adjust text height */
+}
 
-            .counter {
-                width: 100%; /* Make counters full width in their grid cells */
-                height: auto;
-                aspect-ratio: 1 / 1; /* Keep them square */
-                padding: 20px;
-            }
+/* Hide all text sets initially */
+.text-set {
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+}
 
-            .num {
-                font-size: 3em; /* Adjust number size for mobile */
-            }
+/* ✅ Mobile Optimization */
+@media (max-width: 768px) {
+    .header-text {
+        font-size: 1.4em;  /* Adjust the mobile size */
+        width: 90%;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: left;
+        top: 8%; /* Adjust height */
+    }
 
-            .text {
-                font-size: 0.9em; /* Adjust text size for mobile */
-            }
+    /* Hide Desktop Headline & Show Mobile Version */
+    .desktop-headline {
+        display: none;
+    }
+    .mobile-headline {
+        display: block;
+    }
 
-            .header-text {
-                font-size: 1.5em; /* Adjust header size for mobile */
-                width: 90%; /* Adjust header width for mobile */
-                top: 5%; /* Adjust header top position for mobile */
-            }
+    /* Make countdown responsive */
+    .countdown-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Two columns */
+        gap: 10px;
+        width: 90%;
+        max-width: 400px;
+        top: 30%; /* Move it up */
+    }
 
-            .context-text {
-                font-size: 0.9em; /* Adjust context text size for mobile */
-                width: 90%; /* Adjust context text width for mobile */
-                top: auto; /* Remove fixed top position */
-                position: static; /*remove absolute positioning */
-                margin-top: 20px; /* Add space above it */
-            }
-        }
-    </style>
+    .counter {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1 / 1; /* Keep them square */
+        padding: 20px;
+    }
+
+    .num {
+        font-size: 3em; /* Bigger numbers */
+    }
+
+    .text {
+        font-size: 0.85em;
+    }
+
+    .context-text {
+        font-size: 0.9em;
+        width: 90%;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 48%; /* Move lower */
+    }
+}
+</style>
 </head>
 <body>
 
 <div class="header-text">
-    ICSID arbitration tribunal of AVZ vs<br>
-    The Democratic Republic of the Congo.
+    <span class="desktop-headline">
+        ICSID arbitration tribunal of AVZ vs<br>
+        The Democratic Republic of the Congo.
+    </span>
+    <span class="mobile-headline">
+        ICSID arbitration tribunal of AVZ<br> 
+        vs The Democratic Republic of the Congo.
+    </span>
 </div>
 
 <div class="countdown-container">
@@ -165,40 +195,33 @@
         <p class="reveal-text">This decision will determine control of the world's largest lithium deposit.</p>
         <p class="reveal-text">AVZ seeks to restore its rightful stake in the Manono Lithium Project.</p>
     </div>
-
-    <div class="text-set set-2">
-        <p class="reveal-text">On March 15, 2025 at the ICC in Paris, AVZ Minerals Limited won a</p>
-        <p class="reveal-text">legal victory against La Congolaise d'Exploitation Minière (Cominière).</p>
-        <p class="reveal-text">The partial penalty to be enforced amounts to €39.125 million plus interest.</p>
-    </div>
-
-    <div class="text-set set-3">
-        <p class="reveal-text">The ICSID tribunal is set to rule on AVZ’s remaining 75% ownership claim.</p>
-        <p class="reveal-text">This decision could reshape control over one of the world's largest lithium deposits.</p>
-        <p class="reveal-text">AVZ seeks to restore its rightful stake in the Manono Lithium Project.</p>
-    </div>
-
-    <div class="text-set set-4">
-        <p class="reveal-text">Global investors are closely watching as the ruling nears.</p>
-        <p class="reveal-text">The final outcome will have major implications for the lithium industry.</p>
-        <p class="reveal-text">Legal clarity could determine future investment in the DRC.</p>
-    </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script>
-    // Countdown logic
-    const countdownDate = new Date("2025-06-02T00:00:00").getTime();
-    const daysElem = document.querySelector(".days");
-    const hoursElem = document.querySelector(".hours");
-    const minutesElem = document.querySelector(".minutes");
-    const secondsElem = document.querySelector(".seconds");
+const countdownDate = new Date("2025-06-02T00:00:00").getTime();
+const daysElem = document.querySelector(".days");
+const hoursElem = document.querySelector(".hours");
+const minutesElem = document.querySelector(".minutes");
+const secondsElem = document.querySelector(".seconds");
 
-    function updateCountdown() {
-        const now = new Date().getTime();
-        const distance = countdownDate - now;
+function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = countdownDate - now;
 
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    daysElem.textContent = days < 10 ? `0${days}` : days;
+    hoursElem.textContent = hours < 10 ? `0${hours}` : hours;
+    minutesElem.textContent = minutes < 10 ? `0${minutes}` : minutes;
+    secondsElem.textContent = seconds < 10 ? `0${seconds}` : seconds;
+}
+
+setInterval(updateCountdown, 1000);
+updateCountdown();
+</script>
+
+</body>
+</html>
