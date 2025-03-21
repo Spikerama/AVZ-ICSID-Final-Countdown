@@ -38,6 +38,14 @@ body {
     transform: translateX(-50%);
 }
 
+.desktop-headline {
+    display: block;
+}
+
+.mobile-headline {
+    display: none;
+}
+
 /* Countdown */
 .countdown-container {
     display: flex;
@@ -92,9 +100,53 @@ body {
 
 /* Mobile Adjustments */
 @media (max-width: 768px) {
-    .context-text {
+    .header-text {
+        font-size: 2.8em;
+        width: 85%;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: left;
+        top: 5%;
+    }
+
+    .desktop-headline {
+        display: none;
+    }
+
+    .mobile-headline {
+        display: block;
+    }
+
+    .countdown-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
         width: 90%;
-        font-size: 0.9em;
+        max-width: 400px;
+        top: 25%;
+    }
+
+    .counter {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1 / 1;
+        padding: 20px;
+    }
+
+    .num {
+        font-size: 5em;
+    }
+
+    .text {
+        font-size: 1em;
+    }
+
+    .context-text {
+        font-size: 0.8em;
+        width: 90%;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 55%;
     }
 }
 </style>
@@ -102,8 +154,14 @@ body {
 <body>
 
 <div class="header-text">
-    ICSID arbitration tribunal of AVZ vs<br>
-    The Democratic Republic of the Congo.
+    <span class="desktop-headline">
+        ICSID arbitration tribunal of AVZ vs<br>
+        The Democratic Republic of the Congo.
+    </span>
+    <span class="mobile-headline">
+        ICSID arbitration<br>
+        AVZ vs DRC.
+    </span>
 </div>
 
 <div class="countdown-container">
@@ -125,7 +183,6 @@ body {
     </div>
 </div>
 
-<!-- Animated Text Sections -->
 <div class="context-text">
     <div class="text-set set-1">
         <p class="reveal-text">The ICSID tribunal is set to rule on AVZ’s 75% ownership claim.</p>
@@ -154,64 +211,4 @@ body {
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script>
-// Countdown logic
-const countdownDate = new Date("2025-06-02T00:00:00").getTime();
-const daysElem = document.querySelector(".days");
-const hoursElem = document.querySelector(".hours");
-const minutesElem = document.querySelector(".minutes");
-const secondsElem = document.querySelector(".seconds");
-
-function updateCountdown() {
-    const now = new Date().getTime();
-    const distance = countdownDate - now;
-
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    daysElem.textContent = days < 10 ? `0${days}` : days;
-    hoursElem.textContent = hours < 10 ? `0${hours}` : hours;
-    minutesElem.textContent = minutes < 10 ? `0${minutes}` : minutes;
-    secondsElem.textContent = seconds < 10 ? `0${seconds}` : seconds;
-}
-
-setInterval(updateCountdown, 1000);
-updateCountdown();
-
-// GSAP Timeline for line-by-line animation in sets
-let textSets = document.querySelectorAll(".text-set");
-let timeline = gsap.timeline({ repeat: -1 });
-
-textSets.forEach((set, index) => {
-    let lines = set.querySelectorAll(".reveal-text");
-
-    timeline.to(set, { opacity: 1, duration: 0.5 }); // Fade in entire set
-
-    lines.forEach((line, i) => {
-        timeline.fromTo(line,
-            { opacity: 0, y: 10 },
-            { opacity: 1, y: 0, duration: 1.5, ease: "power2.out", delay: i * 1.5 }
-        );
-    });
-
-    timeline.to(set, { opacity: 0, duration: 1, delay: 2 }); // Hold for 2s then fade out
-});
-
-// Mobile version: Only one line at a time
-if (window.innerWidth <= 768) {
-    timeline.clear();
-    
-    textSets.forEach((set, index) => {
-        let lines = set.querySelectorAll(".reveal-text");
-
-        lines.forEach((line, i) => {
-            timeline.to(line, { opacity: 1, duration: 1.5, ease: "power2.out" });
-            timeline.to(line, { opacity: 0, duration: 1, delay: 2 });
-        });
-    });
-}
-</script>
-
-</body>
-</html>
+const
