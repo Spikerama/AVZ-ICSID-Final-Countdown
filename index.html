@@ -23,27 +23,28 @@ body {
     padding: 20px;
 }
 
-/* ✅ Headline */
-.header-text {
-    font-size: 1.8em;
+/* ✅ Desktop Headline */
+.header-text-desktop {
+    font-size: 1.9em;
     font-weight: 600;
     text-align: left;
     width: 600px;
-    line-height: 1.4;
-    margin-bottom: 20px;
     position: absolute;
-    top: 12%;  /* Adjust the height */
+    top: 20%;
     left: 50%;
     transform: translateX(-50%);
 }
 
-/* Desktop Headline (default) */
-.desktop-headline {
-    display: block;
-}
-
-/* Mobile Headline (hidden by default) */
-.mobile-headline {
+/* ✅ Mobile Headline (Hidden on Desktop) */
+.header-text-mobile {
+    font-size: 3em;
+    font-weight: 600;
+    text-align: left;
+    width: 90%;
+    position: absolute;
+    top: 8%;
+    left: 50%;
+    transform: translateX(-50%);
     display: none;
 }
 
@@ -54,9 +55,10 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
-    margin-bottom: 30px;
     position: absolute;
-    top: 40%; /* Adjust the position */
+    top: 35%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 /* ✅ Countdown Boxes */
@@ -73,101 +75,94 @@ body {
 }
 
 .num {
-    font-size: 4em;
+    font-size: 3.8em;
     font-weight: 700;
 }
 
 .text {
-    font-size: 0.75em;
-    transform: translateY(-8px);
+    font-size: 0.70em;
+    transform: translateY(-2px);
     opacity: 0.7;
     font-weight: 600;
 }
 
-/* ✅ Context Text */
-.context-text {
+/* ✅ Desktop Context Text */
+.context-text-desktop {
     font-size: 1em;
     text-align: left;
     width: 600px;
     position: absolute;
-    top: 55%; /* Move it lower */
+    top: 60%;
     left: 50%;
     transform: translateX(-50%);
-    line-height: 1.5; /* Adjust text height */
+    line-height: 1.5;
+}
+
+/* ✅ Mobile Context Text (Hidden on Desktop) */
+.context-text-mobile {
+    font-size: 1.5em;
+    text-align: left;
+    width: 90%;
+    position: absolute;
+    top: 86%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
 }
 
 /* Hide all text sets initially */
 .text-set {
+    opacity: 0;
     position: absolute;
     width: 100%;
-    opacity: 0;
 }
 
 /* ✅ Mobile Optimization */
 @media (max-width: 768px) {
-    .header-text {
-        font-size: 1.4em;  /* Adjust the mobile size */
-        width: 90%;
-        left: 50%;
-        transform: translateX(-50%);
-        text-align: left;
-        top: 8%; /* Adjust height */
-    }
+    .header-text-desktop { display: none; } 
+    .header-text-mobile { display: block; }
 
-    /* Hide Desktop Headline & Show Mobile Version */
-    .desktop-headline {
-        display: none;
-    }
-    .mobile-headline {
-        display: block;
-    }
+    .context-text-desktop { display: none; }
+    .context-text-mobile { display: block; }
 
-    /* Make countdown responsive */
     .countdown-container {
         display: grid;
-        grid-template-columns: 1fr 1fr; /* Two columns */
+        grid-template-columns: 1fr 1fr;
         gap: 10px;
         width: 90%;
         max-width: 400px;
-        top: 30%; /* Move it up */
+        top: 30%;
     }
 
     .counter {
         width: 100%;
         height: auto;
-        aspect-ratio: 1 / 1; /* Keep them square */
+        aspect-ratio: 1 / 1;
         padding: 20px;
     }
 
     .num {
-        font-size: 5em; /* Bigger numbers */
+        font-size: 5em;
     }
 
     .text {
         font-size: 1em;
-    }
-
-    .context-text {
-        font-size: 0.9em;
-        width: 90%;
-        left: 50%;
-        transform: translateX(-50%);
-        top: 48%; /* Move lower */
     }
 }
 </style>
 </head>
 <body>
 
-<div class="header-text">
-    <span class="desktop-headline">
-        ICSID arbitration tribunal of AVZ vs<br>
-        The Democratic Republic of the Congo.
-    </span>
-    <span class="mobile-headline">
-        ICSID tribunal<br> 
-        AVZ vs DRC.
-    </span>
+<!-- ✅ Desktop Headline -->
+<div class="header-text-desktop">
+    ICSID arbitration tribunal of AVZ vs<br>
+    The Democratic Republic of the Congo.
+</div>
+
+<!-- ✅ Mobile Headline -->
+<div class="header-text-mobile">
+    ICSID tribunal<br>
+    AVZ vs DRC.
 </div>
 
 <div class="countdown-container">
@@ -189,14 +184,30 @@ body {
     </div>
 </div>
 
-<div class="context-text">
+<!-- ✅ Desktop Animated Text -->
+<div class="context-text-desktop">
     <div class="text-set set-1">
         <p class="reveal-text">The ICSID tribunal is set to rule on AVZ’s 75% ownership claim.</p>
         <p class="reveal-text">This decision will determine control of the world's largest lithium deposit.</p>
         <p class="reveal-text">AVZ seeks to restore its rightful stake in the Manono Lithium Project.</p>
     </div>
+
+    <div class="text-set set-2">
+        <p class="reveal-text">On March 15, 2025 at the ICC in Paris, AVZ Minerals Limited won a</p>
+        <p class="reveal-text">legal victory against La Congolaise d'Exploitation Minière (Cominière).</p>
+        <p class="reveal-text">The partial penalty to be enforced amounts to €39.125 million plus interest.</p>
+    </div>
 </div>
 
+<!-- ✅ Mobile Animated Text -->
+<div class="context-text-mobile">
+    <div class="text-set set-1">
+        <p class="reveal-text">This is a test set of text just for mobile.</p>
+        <p class="reveal-text">This is a test set of text just for mobile.</p>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script>
 const countdownDate = new Date("2025-06-02T00:00:00").getTime();
 const daysElem = document.querySelector(".days");
@@ -208,19 +219,39 @@ function updateCountdown() {
     const now = new Date().getTime();
     const distance = countdownDate - now;
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    daysElem.textContent = days < 10 ? `0${days}` : days;
-    hoursElem.textContent = hours < 10 ? `0${hours}` : hours;
-    minutesElem.textContent = minutes < 10 ? `0${minutes}` : minutes;
-    secondsElem.textContent = seconds < 10 ? `0${seconds}` : seconds;
+    daysElem.textContent = String(Math.max(0, Math.floor(distance / (1000 * 60 * 60 * 24)))).padStart(2, '0');
+    hoursElem.textContent = String(Math.max(0, Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)))).padStart(2, '0');
+    minutesElem.textContent = String(Math.max(0, Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)))).padStart(2, '0');
+    secondsElem.textContent = String(Math.max(0, Math.floor((distance % (1000 * 60)) / 1000))).padStart(2, '0');
 }
 
 setInterval(updateCountdown, 1000);
 updateCountdown();
+
+/* ✅ Venetian Blind Effect Fix */
+function animateTextSets() {
+    const textSets = document.querySelectorAll(".text-set");
+    let currentSetIndex = 0;
+
+    function showNextSet() {
+        const currentSet = textSets[currentSetIndex];
+        gsap.to(currentSet, { opacity: 1, duration: 1, immediateRender: true });
+
+        gsap.fromTo(currentSet.querySelectorAll(".reveal-text"),
+            { opacity: 0, y: 20 },
+            { opacity: 1, y: 0, stagger: 0.5, duration: 1.5, immediateRender: true });
+
+        gsap.delayedCall(4, () => {
+            gsap.to(currentSet, { opacity: 0, duration: 1 });
+            currentSetIndex = (currentSetIndex + 1) % textSets.length;
+            gsap.delayedCall(1, showNextSet);
+        });
+    }
+
+    showNextSet();
+}
+
+animateTextSets();
 </script>
 
 </body>
