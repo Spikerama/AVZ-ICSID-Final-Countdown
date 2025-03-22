@@ -35,7 +35,7 @@ body {
     transform: translateX(-50%);
 }
 
-/* ✅ Mobile Headline */
+/* ✅ Mobile Headline (Hidden on Desktop) */
 .header-text-mobile {
     font-size: 3em;
     font-weight: 600;
@@ -98,7 +98,7 @@ body {
     line-height: 1.5;
 }
 
-/* ✅ Mobile Context Text */
+/* ✅ Mobile Context Text (Hidden on Desktop) */
 .context-text-mobile {
     font-size: 1.5em;
     text-align: left;
@@ -199,45 +199,43 @@ body {
     </div>
 </div>
 
+<!-- ✅ Mobile Animated Text -->
+<div class="context-text-mobile">
+    <div class="text-set set-1">
+        <p class="reveal-text">This is a test set of text just for mobile.</p>
+        <p class="reveal-text">This is a test set of text just for mobile.</p>
+        <p class="reveal-text">This is a test set of text just for mobile.</p>
+    </div>
+
+    <div class="text-set set-2">
+        <p class="reveal-text">This is a test set of text just for mobile.</p>
+        <p class="reveal-text">This is a test set of text just for mobile.</p>
+        <p class="reveal-text">This is a test set of text just for mobile.</p>
+    </div>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script>
-const countdownDate = new Date("2025-06-02T00:00:00").getTime();
-const daysElem = document.querySelector(".days");
-const hoursElem = document.querySelector(".hours");
-const minutesElem = document.querySelector(".minutes");
-const secondsElem = document.querySelector(".seconds");
+const textSets = document.querySelectorAll(".context-text-desktop .text-set, .context-text-mobile .text-set");
+let currentSetIndex = 0;
 
-function updateCountdown() {
-    const now = new Date().getTime();
-    const distance = countdownDate - now;
-
-    daysElem.textContent = String(Math.max(0, Math.floor(distance / (1000 * 60 * 60 * 24)))).padStart(2, '0');
-    hoursElem.textContent = String(Math.max(0, Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)))).padStart(2, '0');
-    minutesElem.textContent = String(Math.max(0, Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)))).padStart(2, '0');
-    secondsElem.textContent = String(Math.max(0, Math.floor((distance % (1000 * 60)) / 1000))).padStart(2, '0');
-}
-
-setInterval(updateCountdown, 1000);
-updateCountdown();
-
-/* ✅ Fixed GSAP Delays */
+/* ✅ Faster Loop & Instant Mobile Start */
 function animateTextSets() {
-    const textSets = document.querySelectorAll(".text-set");
-    let currentSetIndex = 0;
-
     function showNextSet() {
         const currentSet = textSets[currentSetIndex];
         gsap.to(currentSet, { opacity: 1, duration: 1 });
 
-        gsap.fromTo(currentSet.querySelectorAll(".reveal-text"),
-            { opacity: 0, y: 10 },
-            { opacity: 1, y: 0, stagger: 0.5, duration: 1 });
+        gsap.fromTo(
+            currentSet.querySelectorAll(".reveal-text"),
+            { opacity: 0, y: 20 },
+            { opacity: 1, y: 0, stagger: 0.3, duration: 1 }
+        );
 
-        gsap.delayedCall(3.5, () => {
+        setTimeout(() => {
             gsap.to(currentSet, { opacity: 0, duration: 1 });
             currentSetIndex = (currentSetIndex + 1) % textSets.length;
-            gsap.delayedCall(0.5, showNextSet);
-        });
+            setTimeout(showNextSet, 500);
+        }, 3500);
     }
 
     showNextSet();
