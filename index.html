@@ -4,16 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ICSID Arbitration Countdown</title>
+
+<!-- ✅ Apple-style Aesthetics -->
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
+    font-family: 'Inter', sans-serif;
 }
 
 body {
-    background: url('https://www.nasa.gov/wp-content/uploads/2023/03/127a0959.jpeg') no-repeat center center/cover;
+    background: linear-gradient(to bottom, #111113, #1a1c1e);
     color: #ffffff;
     display: flex;
     flex-direction: column;
@@ -21,49 +25,32 @@ body {
     align-items: center;
     height: 100vh;
     padding: 20px;
+    text-align: center;
 }
 
-/* ✅ Desktop Headline */
-.header-text-desktop {
-    font-size: 1.9em;
+/* ✅ Headline */
+.header-text {
+    font-size: 2.5em;
     font-weight: 600;
-    text-align: left;
-    width: 600px;
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translateX(-50%);
+    text-align: center;
+    margin-bottom: 30px;
+    letter-spacing: -0.02em;
 }
 
-/* ✅ Mobile Headline (Hidden on Desktop) */
-.header-text-mobile {
-    font-size: 3em;
-    font-weight: 600;
-    text-align: left;
-    width: 90%;
-    position: absolute;
-    top: 8%;
-    left: 50%;
-    transform: translateX(-50%);
-    display: none;
-}
-
-/* ✅ Countdown Timer */
+/* ✅ Countdown Box Container */
 .countdown-container {
     display: flex;
     gap: 20px;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    position: absolute;
-    top: 35%;
-    left: 50%;
-    transform: translateX(-50%);
+    margin-bottom: 50px;
 }
 
-/* ✅ Countdown Boxes */
+/* ✅ Countdown Boxes - Apple Glassmorphism */
 .counter {
     background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
     padding: 40px;
     text-align: center;
     width: 140px;
@@ -72,99 +59,58 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0px 4px 20px rgba(255, 255, 255, 0.08);
 }
 
 .num {
-    font-size: 3.8em;
-    font-weight: 700;
+    font-size: 3.5em;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: -0.03em;
 }
 
 .text {
-    font-size: 0.70em;
-    transform: translateY(-2px);
-    opacity: 0.7;
-    font-weight: 600;
+    font-size: 0.85em;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
 }
 
-/* ✅ Desktop Context Text */
-.context-text-desktop {
-    font-size: 1em;
-    text-align: left;
-    width: 600px;
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    transform: translateX(-50%);
+/* ✅ Animated Context Text */
+.context-text {
+    font-size: 1.3em;
+    font-weight: 400;
     line-height: 1.5;
-}
-
-/* ✅ Mobile Context Text (Hidden on Desktop) */
-.context-text-mobile {
-    font-size: 1.5em;
-    text-align: left;
-    width: 90%;
-    position: absolute;
-    top: 86%;
-    left: 50%;
-    transform: translateX(-50%);
-    display: none;
-}
-
-/* Hide all text sets initially */
-.text-set {
     opacity: 0;
-    position: absolute;
-    width: 100%;
+    transition: opacity 1s ease-out;
 }
 
 /* ✅ Mobile Optimization */
 @media (max-width: 768px) {
-    .header-text-desktop { display: none; } 
-    .header-text-mobile { display: block; }
-
-    .context-text-desktop { display: none; }
-    .context-text-mobile { display: block; }
-
+    .header-text { font-size: 2em; }
     .countdown-container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
+        flex-wrap: wrap;
         gap: 10px;
-        width: 90%;
-        max-width: 400px;
-        top: 30%;
     }
-
     .counter {
-        width: 100%;
-        height: auto;
-        aspect-ratio: 1 / 1;
+        width: 100px;
+        height: 100px;
         padding: 20px;
     }
-
-    .num {
-        font-size: 5em;
-    }
-
-    .text {
-        font-size: 1em;
-    }
+    .num { font-size: 2.5em; }
+    .text { font-size: 0.75em; }
 }
 </style>
 </head>
+
 <body>
 
-<!-- ✅ Desktop Headline -->
-<div class="header-text-desktop">
-    ICSID arbitration tribunal of AVZ vs<br>
-    The Democratic Republic of the Congo.
+<!-- ✅ Headline -->
+<div class="header-text">
+    ICSID Arbitration Tribunal <br> AVZ vs. DRC
 </div>
 
-<!-- ✅ Mobile Headline -->
-<div class="header-text-mobile">
-    ICSID tribunal<br>
-    AVZ vs DRC.
-</div>
-
+<!-- ✅ Countdown Timer -->
 <div class="countdown-container">
     <div class="counter">
         <span class="num days">00</span>
@@ -184,64 +130,33 @@ body {
     </div>
 </div>
 
-<!-- ✅ Desktop Animated Text -->
-<div class="context-text-desktop">
-    <div class="text-set set-1">
-        <p class="reveal-text">The ICSID tribunal is set to rule on AVZ’s 75% ownership claim.</p>
-        <p class="reveal-text">This decision will determine control of the world's largest lithium deposit.</p>
-        <p class="reveal-text">AVZ seeks to restore its rightful stake in the Manono Lithium Project.</p>
-    </div>
-
-    <div class="text-set set-2">
-        <p class="reveal-text">On March 15, 2025 at the ICC in Paris, AVZ Minerals Limited won a</p>
-        <p class="reveal-text">legal victory against La Congolaise d'Exploitation Minière (Cominière).</p>
-        <p class="reveal-text">The partial penalty to be enforced amounts to €39.125 million plus interest.</p>
-    </div>
-</div>
-
-<!-- ✅ Mobile Animated Text -->
-<div class="context-text-mobile">
-    <div class="text-set set-1">
-        <p class="reveal-text">This is a test set of text just for mobile.</p>
-        <p class="reveal-text">This is a test set of text just for mobile.</p>
-        <p class="reveal-text">This is a test set of text just for mobile.</p>
-    </div>
-
-    <div class="text-set set-2">
-        <p class="reveal-text">This is a test set of text just for mobile.</p>
-        <p class="reveal-text">This is a test set of text just for mobile.</p>
-        <p class="reveal-text">This is a test set of text just for mobile.</p>
-    </div>
-</div>
+<!-- ✅ Animated Text -->
+<div class="context-text">The ruling will determine who controls the world’s largest lithium deposit.</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script>
-const textSets = document.querySelectorAll(".context-text-desktop .text-set, .context-text-mobile .text-set");
-let currentSetIndex = 0;
+const countdownDate = new Date("2025-06-02T00:00:00").getTime();
+const daysElem = document.querySelector(".days");
+const hoursElem = document.querySelector(".hours");
+const minutesElem = document.querySelector(".minutes");
+const secondsElem = document.querySelector(".seconds");
 
-/* ✅ Faster Loop & Instant Mobile Start */
-function animateTextSets() {
-    function showNextSet() {
-        const currentSet = textSets[currentSetIndex];
-        gsap.to(currentSet, { opacity: 1, duration: 1 });
+function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = countdownDate - now;
 
-        gsap.fromTo(
-            currentSet.querySelectorAll(".reveal-text"),
-            { opacity: 0, y: 20 },
-            { opacity: 1, y: 0, stagger: 0.3, duration: 1 }
-        );
-
-        setTimeout(() => {
-            gsap.to(currentSet, { opacity: 0, duration: 1 });
-            currentSetIndex = (currentSetIndex + 1) % textSets.length;
-            setTimeout(showNextSet, 500);
-        }, 3500);
-    }
-
-    showNextSet();
+    daysElem.textContent = String(Math.max(0, Math.floor(distance / (1000 * 60 * 60 * 24)))).padStart(2, '0');
+    hoursElem.textContent = String(Math.max(0, Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)))).padStart(2, '0');
+    minutesElem.textContent = String(Math.max(0, Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)))).padStart(2, '0');
+    secondsElem.textContent = String(Math.max(0, Math.floor((distance % (1000 * 60)) / 1000))).padStart(2, '0');
 }
 
-animateTextSets();
+// Call updateCountdown initially
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+// ✅ Animate Context Text 
+gsap.to(".context-text", { opacity: 1, duration: 2, delay: 2 });
 </script>
 
 </body>
