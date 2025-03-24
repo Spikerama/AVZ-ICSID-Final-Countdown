@@ -4,20 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ICSID Arbitration Countdown</title>
-
-<!-- ✅ Apple-style Aesthetics -->
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600&display=swap');
-
+/* ✅ Apple-Inspired Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
+    font-family: "SF Pro Display", sans-serif; /* Apple's system font */
 }
 
 body {
-    background: linear-gradient(to bottom, #111113, #1a1c1e);
+    background: radial-gradient(circle at top, #111820, #050A0F);
     color: #ffffff;
     display: flex;
     flex-direction: column;
@@ -25,92 +22,128 @@ body {
     align-items: center;
     height: 100vh;
     padding: 20px;
-    text-align: center;
+    overflow: hidden;
 }
 
-/* ✅ Headline */
-.header-text {
-    font-size: 2.5em;
-    font-weight: 600;
-    text-align: center;
-    margin-bottom: 30px;
-    letter-spacing: -0.02em;
-}
-
-/* ✅ Countdown Box Container */
+/* ✅ Glassmorphic Countdown */
 .countdown-container {
     display: flex;
     gap: 20px;
     justify-content: center;
     align-items: center;
-    margin-bottom: 50px;
+    width: 100%;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
-/* ✅ Countdown Boxes - Apple Glassmorphism */
 .counter {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border-radius: 15px;
-    padding: 40px;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 50px;
     text-align: center;
-    width: 140px;
-    height: 140px;
+    width: 170px;
+    height: 170px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0px 4px 20px rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 30px rgba(255, 255, 255, 0.15);
+    transition: all 0.3s ease-in-out;
+}
+
+.counter:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 40px rgba(255, 255, 255, 0.25);
 }
 
 .num {
-    font-size: 3.5em;
-    font-weight: 600;
+    font-size: 3.8em;
+    font-weight: 700;
     color: #ffffff;
-    letter-spacing: -0.03em;
+    text-shadow: 0px 0px 12px rgba(0, 204, 255, 0.8);
+    transition: text-shadow 0.3s ease-in-out;
+}
+
+.counter:hover .num {
+    text-shadow: 0px 0px 24px rgba(0, 204, 255, 1);
 }
 
 .text {
     font-size: 0.85em;
-    font-weight: 400;
-    color: rgba(255, 255, 255, 0.7);
+    opacity: 0.7;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
-/* ✅ Animated Context Text */
-.context-text {
-    font-size: 1.3em;
-    font-weight: 400;
-    line-height: 1.5;
+/* ✅ Apple Keynote Title */
+.header-text {
+    font-size: 2.5em;
+    font-weight: 600;
+    text-align: center;
+    width: 90%;
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
     opacity: 0;
-    transition: opacity 1s ease-out;
 }
 
-/* ✅ Mobile Optimization */
+/* ✅ Cinematic Text Blocks */
+.context-text {
+    font-size: 1.4em;
+    text-align: center;
+    width: 800px;
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+}
+
+/* ✅ Responsive */
 @media (max-width: 768px) {
-    .header-text { font-size: 2em; }
     .countdown-container {
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         gap: 10px;
+        width: 90%;
+        max-width: 400px;
+        top: 35%;
     }
+
     .counter {
-        width: 100px;
-        height: 100px;
+        width: 100%;
+        height: auto;
         padding: 20px;
     }
-    .num { font-size: 2.5em; }
-    .text { font-size: 0.75em; }
+
+    .num {
+        font-size: 3em;
+    }
+
+    .text {
+        font-size: 0.9em;
+    }
+
+    .context-text {
+        font-size: 1.1em;
+        width: 90%;
+    }
 }
 </style>
 </head>
-
 <body>
 
-<!-- ✅ Headline -->
+<!-- ✅ Apple-Style Title -->
 <div class="header-text">
-    ICSID Arbitration Tribunal <br> AVZ vs. DRC
+    ICSID Arbitration Tribunal Countdown
 </div>
 
-<!-- ✅ Countdown Timer -->
+<!-- ✅ Glass Countdown -->
 <div class="countdown-container">
     <div class="counter">
         <span class="num days">00</span>
@@ -130,11 +163,15 @@ body {
     </div>
 </div>
 
-<!-- ✅ Animated Text -->
-<div class="context-text">The ruling will determine who controls the world’s largest lithium deposit.</div>
+<!-- ✅ Cinematic Text -->
+<div class="context-text">
+    A crucial ruling that will define the future of lithium mining.
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script>
+
+// ✅ Apple-Style Countdown Animation
 const countdownDate = new Date("2025-06-02T00:00:00").getTime();
 const daysElem = document.querySelector(".days");
 const hoursElem = document.querySelector(".hours");
@@ -151,12 +188,14 @@ function updateCountdown() {
     secondsElem.textContent = String(Math.max(0, Math.floor((distance % (1000 * 60)) / 1000))).padStart(2, '0');
 }
 
-// Call updateCountdown initially
+// Update countdown every second
 updateCountdown();
 setInterval(updateCountdown, 1000);
 
-// ✅ Animate Context Text 
-gsap.to(".context-text", { opacity: 1, duration: 2, delay: 2 });
+// ✅ Cinematic Reveal
+gsap.to(".header-text", { opacity: 1, y: -20, duration: 1.5, ease: "power2.out" });
+gsap.to(".context-text", { opacity: 1, y: -10, duration: 2, delay: 1.5, ease: "power2.out" });
+
 </script>
 
 </body>
