@@ -5,16 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ICSID Arbitration Countdown</title>
 <style>
-/* ✅ Apple-Inspired Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "SF Pro Display", sans-serif; /* Apple's system font */
+    font-family: "Poppins", sans-serif;
 }
 
 body {
-    background: radial-gradient(circle at top, #111820, #050A0F);
+    background: url('https://i.imgur.com/BKlm6M6.png') no-repeat center center/cover;
     color: #ffffff;
     display: flex;
     flex-direction: column;
@@ -22,10 +21,34 @@ body {
     align-items: center;
     height: 100vh;
     padding: 20px;
-    overflow: hidden;
 }
 
-/* ✅ Glassmorphic Countdown */
+/* ✅ Desktop Headline */
+.header-text-desktop {
+    font-size: 1.8em;
+    font-weight: 600;
+    text-align: left;
+    width: 600px;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* ✅ Mobile Headline (Hidden on Desktop) */
+.header-text-mobile {
+    font-size: 3em;
+    font-weight: 600;
+    text-align: left;
+    width: 90%;
+    position: absolute;
+    top: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+}
+
+/* ✅ Countdown Timer */
 .countdown-container {
     display: flex;
     gap: 20px;
@@ -33,117 +56,115 @@ body {
     align-items: center;
     width: 100%;
     position: absolute;
-    top: 40%;
+    top: 35%;
     left: 50%;
     transform: translateX(-50%);
 }
 
+/* ✅ Countdown Boxes */
 .counter {
-    background: rgba(255, 255, 255, 0.08);
-    padding: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 40px;
     text-align: center;
-    width: 170px;
-    height: 170px;
+    width: 140px;
+    height: 140px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-radius: 16px;
-    backdrop-filter: blur(12px);
-    box-shadow: 0 4px 30px rgba(255, 255, 255, 0.15);
-    transition: all 0.3s ease-in-out;
-}
-
-.counter:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 40px rgba(255, 255, 255, 0.25);
 }
 
 .num {
     font-size: 3.8em;
     font-weight: 700;
-    color: #ffffff;
-    text-shadow: 0px 0px 12px rgba(0, 204, 255, 0.8);
-    transition: text-shadow 0.3s ease-in-out;
-}
-
-.counter:hover .num {
-    text-shadow: 0px 0px 24px rgba(0, 204, 255, 1);
 }
 
 .text {
-    font-size: 0.85em;
+    font-size: 0.70em;
+    transform: translateY(-2px);
     opacity: 0.7;
     font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
 }
 
-/* ✅ Apple Keynote Title */
-.header-text {
-    font-size: 2.5em;
-    font-weight: 600;
-    text-align: center;
+/* ✅ Desktop Context Text */
+.context-text-desktop {
+    font-size: 1em;
+    text-align: left;
+    width: 600px;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translateX(-50%);
+    line-height: 1.5;
+}
+
+/* ✅ Mobile Context Text (Hidden on Desktop) */
+.context-text-mobile {
+    font-size: 1.4em;
+    text-align: left;
     width: 90%;
     position: absolute;
-    top: 15%;
+    top: 86%;
     left: 50%;
     transform: translateX(-50%);
-    opacity: 0;
+    display: none;
 }
 
-/* ✅ Cinematic Text Blocks */
-.context-text {
-    font-size: 1.4em;
-    text-align: center;
-    width: 800px;
+/* Hide all text sets initially */
+.text-set {
+    opacity: 0;
     position: absolute;
-    top: 70%;
-    left: 50%;
-    transform: translateX(-50%);
-    opacity: 0;
+    width: 100%;
 }
 
-/* ✅ Responsive */
+/* ✅ Mobile Optimization */
 @media (max-width: 768px) {
+    .header-text-desktop { display: none; } 
+    .header-text-mobile { display: block; }
+
+    .context-text-desktop { display: none; }
+    .context-text-mobile { display: block; }
+
     .countdown-container {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 10px;
         width: 90%;
         max-width: 400px;
-        top: 35%;
+        top: 30%;
     }
 
     .counter {
         width: 100%;
         height: auto;
+        aspect-ratio: 1 / 1;
         padding: 20px;
     }
 
     .num {
-        font-size: 3em;
+        font-size: 5em;
     }
 
     .text {
-        font-size: 0.9em;
-    }
-
-    .context-text {
-        font-size: 1.1em;
-        width: 90%;
+        font-size: 1em;
     }
 }
 </style>
 </head>
 <body>
 
-<!-- ✅ Apple-Style Title -->
-<div class="header-text">
-    ICSID Arbitration Tribunal Countdown
+<!-- ✅ Desktop Headline -->
+<div class="header-text-desktop">
+    ICSID arbitration tribunal of AVZ vs DRC<br>
+    The Democratic Republic of Corruption.
 </div>
 
-<!-- ✅ Glass Countdown -->
+<!-- ✅ Mobile Headline -->
+<div class="header-text-mobile">
+    ICSID tribunal<br>
+    AVZ vs DRC.
+</div>
+
 <div class="countdown-container">
     <div class="counter">
         <span class="num days">00</span>
@@ -163,15 +184,120 @@ body {
     </div>
 </div>
 
-<!-- ✅ Cinematic Text -->
-<div class="context-text">
-    A crucial ruling that will define the future of lithium mining.
+<!-- ✅ Desktop Animated Text -->
+<div class="context-text-desktop">
+    <div class="text-set set-1">
+        <p class="reveal-text">Soon, the ICSID tribunal is set to rule on AVZ’s 75% ownership claim.</p>
+        <p class="reveal-text">This decision will determine who controls the world's largest lithium deposit.</p>
+        <p class="reveal-text">AVZ only seeks to restore its rightful stake in the Manono Lithium Project.</p>
+    </div>
+
+    <div class="text-set set-2">
+        <p class="reveal-text">On March 15, 2025 at the ICC in Paris, AVZ Minerals Limited won a huge legal</p>
+        <p class="reveal-text">victory against the DRC's La Congolaise d'Exploitation Minière (Cominière).</p>
+        <p class="reveal-text">The partial penalty to be enforced amounts to €39.125 million plus interest.</p>
+    </div>
+
+    <div class="text-set set-3">
+        <p class="reveal-text">$150 million worth of development by AVZ was illegally seized by Cominière.</p>
+        <p class="reveal-text">This corruption is well documented by the General Inspectorate of Finance.</p>
+        <p class="reveal-text">Cominière, for a $6 million bribe, gifted the project to the Chinese miners.</p>
+    </div>
+
+    <div class="text-set set-4">
+        <p class="reveal-text">21,000 AVZ investors had their wealth stolen, lives ruined, hopes squashed.</p>
+        <p class="reveal-text">Some shareholders have even died whilst waiting for justice in the courts.</p>
+        <p class="reveal-text">Meanwhile, Cominière & Zijin thumb their nose at ICC court orders to desist.</p>
+    </div>
+
+    <div class="text-set set-5">
+        <p class="reveal-text">The people of the DRC should be thriving but their future has been raped.</p>
+        <p class="reveal-text">Manono's riches fund not roads, schools or hospitals but vacations for Elites.</p>
+        <p class="reveal-text">The world sits silent as Manono is looted, and the Congolese stay in poverty.</p>
+    </div>
+
+    <div class="text-set set-6">
+        <p class="reveal-text">AVZ is still fighting in international courts — and they’re winning every case.</p>
+        <p class="reveal-text">The truth is out and the time is up for the corrupt politicians of the DRC.</p>
+        <p class="reveal-text">A blistering sunrise is about to shed light on it all. And it won’t be pretty.</p>
+    </div>
 </div>
+
+<!-- ✅ Mobile Animated Text -->
+<div class="context-text-mobile">
+    <div class="text-set set-1">
+        <p class="reveal-text">Soon, the ICSID tribunal is set to rule on AVZ’s 75% ownership claim.</p>
+    </div>
+
+    <div class="text-set set-2">
+        <p class="reveal-text">This decision will determine who controls the world's largest lithium deposit.</p> 
+    </div>
+    
+    <div class="text-set set-3">
+        <p class="reveal-text">AVZ only seeks to restore its rightful stake in the Manono Lithium Project.</p>
+    </div>
+
+    <div class="text-set set-4">
+        <p class="reveal-text">On March 15, 2025 at the ICC in Paris, AVZ Minerals Limited won a huge legal victory.</p>
+    </div>
+
+    <div class="text-set set-5">
+        <p class="reveal-text">The partial penalty to be enforced amounts to €39.125 million plus interest.</p>
+    </div>
+
+    <div class="text-set set-6">
+        <p class="reveal-text">$150 million worth of development by AVZ was illegally seized by Cominière.</p>
+    </div>
+
+    <div class="text-set set-7">
+        <p class="reveal-text">This corruption is well documented by the General Inspectorate of Finance.</p>
+    </div>
+
+    <div class="text-set set-8">
+        <p class="reveal-text">Cominière, for a $6 million bribe, gifted the project to the Chinese miners.</p>
+    </div>
+
+    <div class="text-set set-9">
+        <p class="reveal-text">21,000 AVZ investors had their wealth stolen, lives ruined, hopes squashed.</p>
+    </div>
+
+    <div class="text-set set-10">
+        <p class="reveal-text">Some shareholders have even died whilst waiting for justice in the courts.</p>
+    </div>
+
+    <div class="text-set set-11">
+        <p class="reveal-text">Meanwhile, Cominière & Zijin thumb their nose at ICC court orders to desist.</p>
+    </div>
+
+    <div class="text-set set-12">
+        <p class="reveal-text">The people of the DRC should be thriving but their future has been raped.</p>
+    </div>
+
+    <div class="text-set set-13">
+        <p class="reveal-text">Manono's riches fund not roads, schools or hospitals but vacations for Elites.</p>
+    </div>
+
+    <div class="text-set set-14">
+        <p class="reveal-text">The world sits silent as Manono is looted, and the Congolese stay in poverty.</p>
+    </div>
+
+    <div class="text-set set-15">
+        <p class="reveal-text">AVZ is still fighting in international courts — and they’re winning every case.</p>
+    </div>
+
+    <div class="text-set set-16">
+        <p class="reveal-text">The truth is out and the time is up for the corrupt politicians of the DRC.</p>
+    </div>
+
+    <div class="text-set set-17">
+        <p class="reveal-text">A blistering sunrise is about to shed light on it all. And it won’t be pretty.</p>
+    </div>
+</div>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script>
 
-// ✅ Apple-Style Countdown Animation
 const countdownDate = new Date("2025-06-02T00:00:00").getTime();
 const daysElem = document.querySelector(".days");
 const hoursElem = document.querySelector(".hours");
@@ -188,15 +314,43 @@ function updateCountdown() {
     secondsElem.textContent = String(Math.max(0, Math.floor((distance % (1000 * 60)) / 1000))).padStart(2, '0');
 }
 
-// Update countdown every second
+// Call updateCountdown initially
 updateCountdown();
+
+// Update the countdown every second
 setInterval(updateCountdown, 1000);
 
-// ✅ Cinematic Reveal
-gsap.to(".header-text", { opacity: 1, y: -20, duration: 1.5, ease: "power2.out" });
-gsap.to(".context-text", { opacity: 1, y: -10, duration: 2, delay: 1.5, ease: "power2.out" });
+// 🎬 Smooth Line-by-Line Animation
+const textSets = document.querySelectorAll(".text-set");
+let currentSetIndex = 0;
 
+function showNextSet() {
+    const currentSet = textSets[currentSetIndex];
+
+    // Show the current text set
+    gsap.to(currentSet, { opacity: 1, duration: 1 });
+
+    // Animate each line individually with stagger effect
+    gsap.fromTo(
+        currentSet.querySelectorAll(".reveal-text"),
+        { opacity: 0, y: 15 },
+        { opacity: 1, y: 0, stagger: 1.5, duration: 1.2 }
+    );
+
+    // Delay before switching to the next text set
+    let delayBeforeNext = 6000 + (currentSet.querySelectorAll(".reveal-text").length * 1500); // Adjust delay dynamically
+    let finalDelay = 3000;
+
+    setTimeout(() => {
+        gsap.to(currentSet, { opacity: 0, duration: 1.5 });
+
+        currentSetIndex = (currentSetIndex + 1) % textSets.length;
+        let nextDelay = (currentSetIndex === 0) ? finalDelay : 1500;
+
+        setTimeout(showNextSet, nextDelay);
+    }, delayBeforeNext);
+}
+
+// Start the animation loop
+showNextSet();
 </script>
-
-</body>
-</html>
